@@ -105,9 +105,26 @@ client.on('messageCreate', async (msg) => {
 
     const text = msg.content.trim();
 
+    
+    if (text === "!sunucudurumu") {
+      if (state.open) {
+        await msg.reply("🟢 Sunucu Açık");
+      } else {
+        await msg.reply("🔴 Sunucu Kapalı");
+      }
+      return;
+    }
+
+    
+    if (text === "!grup") {
+      await msg.reply("Grup linki : https://www.roblox.com/communities/16410848/Ro-Roleplay#!/about");
+      return;
+    }
+
+   
     if (text !== "!oyunuac" && text !== "!oyunukapat") return;
 
-    // Role kontrol
+ 
     if (!hasRole(msg.member, ROLE_NAME)) {
       await msg.reply("Bu komutu kullanamazsın (GameAdmin rolü gerekli).");
       return;
@@ -122,6 +139,7 @@ client.on('messageCreate', async (msg) => {
     console.error("[BOT] Error:", err);
   }
 });
+;
 
 client.login(DISCORD_TOKEN).then(() => {
   console.log("[BOT] Logged in.");
