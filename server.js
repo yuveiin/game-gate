@@ -105,13 +105,9 @@ client.on('messageCreate', async (msg) => {
 
     const text = msg.content.trim();
 
-    
+   
     if (text === "!sunucudurumu") {
-      if (state.open) {
-        await msg.reply("🟢 Sunucu Açık");
-      } else {
-        await msg.reply("🔴 Sunucu Kapalı");
-      }
+      await msg.reply(state.open ? "🟢 Sunucu Açık" : "🔴 Sunucu Kapalı");
       return;
     }
 
@@ -120,13 +116,18 @@ client.on('messageCreate', async (msg) => {
       await msg.reply("Grup linki : https://www.roblox.com/communities/16410848/Ro-Roleplay#!/about");
       return;
     }
+    
+    if (text === "!oyunlinki") {
+      await msg.reply("Oyun Linki: https://www.roblox.com/games/91824406845482/New-Jersey");
+      return;
+    }
 
-   
+    
     if (text !== "!oyunuac" && text !== "!oyunukapat") return;
 
- 
+    
     if (!hasRole(msg.member, ROLE_NAME)) {
-      await msg.reply("Bu komutu kullanamazsın (GameAdmin rolü gerekli).");
+      await msg.reply("Bu komutu kullanamazsın (Yönetici değilsin.).");
       return;
     }
 
@@ -139,6 +140,8 @@ client.on('messageCreate', async (msg) => {
     console.error("[BOT] Error:", err);
   }
 });
+
+
 ;
 
 client.login(DISCORD_TOKEN).then(() => {
