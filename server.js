@@ -117,7 +117,7 @@ client.on('messageCreate', async (msg) => {
       return;
     }
     
-    if (text === "!oyunlinki") {
+    if (text === "!oyun") {
       await msg.reply("Oyun Linki: https://www.roblox.com/games/91824406845482/New-Jersey");
       return;
     }
