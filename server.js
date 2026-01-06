@@ -78,6 +78,23 @@ const client = new Client({
     GatewayIntentBits.GuildMembers
   ],
 });
+// === GUILD WHITELIST (Seviye 2) ===
+const ALLOWED_GUILDS = new Set([
+  "SUNUCU_ID_1",
+]);
+
+client.on("guildCreate", async (guild) => {
+  try {
+    if (!ALLOWED_GUILDS.has(guild.id)) {
+      console.log(`❌ Yetkisiz sunucuya eklendi, çıkılıyor: ${guild.name} (${guild.id})`);
+      await guild.leave();
+    } else {
+      console.log(`✅ İzinli sunucuya eklendi: ${guild.name} (${guild.id})`);
+    }
+  } catch (err) {
+    console.log("guildCreate whitelist error:", err);
+  }
+});
 
 function hasRole(member, roleName) {
   if (!member) return false;
